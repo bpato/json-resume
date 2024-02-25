@@ -1,0 +1,119 @@
+---
+import { basics } from "@cv";
+import Section from "@/components/Section.astro";
+
+import Email from "@/icons/Email.astro";
+import Phone from "@/icons/Phone.astro";
+import Place from "@/icons/Place.astro";
+import Public from "@/icons/Public.astro";
+import Share from "@/icons/Share.astro";
+import Github from "@/icons/Github.astro";
+import Twitter from "@/icons/Twitter.astro";
+
+interface Props {
+    id?: string;
+}
+
+interface IconProp {
+    height: string;
+    width: string;
+}
+
+const iconProp: IconProp = {
+    height: "11pt",
+    width: "11pt",
+};
+
+const { id } = Astro.props;
+
+const { email, phone, location, url, profiles } = basics;
+
+const SOCIAL_ICONS: Record<string, any> = {
+    Github,
+    Twitter,
+};
+---
+
+<Section {id}>
+    <ul class="horizontal">
+        <li>
+            <Email {...iconProp} />{
+                email && (
+                    <a href={`mailto:${email}`} target="_blank">
+                        {email}
+                    </a>
+                )
+            }
+        </li>
+        <li>
+            <Phone {...iconProp} />{
+                phone && (
+                    <a href={`tel:${phone}`} target="_blank">
+                        {phone}
+                    </a>
+                )
+            }
+        </li>
+        <li>
+            <Place {...iconProp} />{location.region}, {location.countryCode}
+        </li>
+        <li>
+            <Public {...iconProp} />{
+                url && (
+                    <a href={url} target="_blank" rel="noopener noreferrer">
+                        {url}
+                    </a>
+                )
+            }
+        </li>
+        {
+            profiles.map((data) => {
+                const Icon = SOCIAL_ICONS[data.network];
+
+                return (
+                    <li>
+                        <Icon {...iconProp} />
+                        {data.url ? (
+                            <a
+                                href={data.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                @{data.username}
+                            </a>
+                        ) : (
+                            `@${data.username}`
+                        )}
+                    </li>
+                );
+            })
+        }
+    </ul>
+</Section>
+
+<style lang="scss">
+    // Distribucion horizontal de los elementos del bloque 2:
+    // _____________________________________
+    // |   ___     ___     ___     ___     |
+    // |___________________________________|
+
+    .horizontal {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+
+        font-weight: bold;
+        font-size: 11pt;
+
+        width: 100%;
+        height: 100%;
+
+        & > li {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+    }
+</style>

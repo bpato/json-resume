@@ -1,0 +1,65 @@
+---
+import { basics } from "@cv";
+import Section from "@/components/Section.astro";
+
+interface Props {
+    id?: string;
+}
+
+const { id } = Astro.props;
+
+const { name, label, image, summary, location } = basics;
+---
+
+<Section {id}>
+    <article id="profile">
+        <hgroup>
+            <h1>{name}</h1>
+            <h2>{label}</h2>
+        </hgroup>
+        <p>
+            <span>({location.city})</span>
+            {summary}
+        </p>
+    </article>
+    <figure id="photo">
+        <img src={image} />
+    </figure>
+</Section>
+
+<style lang="scss">
+    #profile {
+        grid-area: profile;
+        justify-self: start;
+        align-self: stretch;
+
+        hgroup {
+            margin-bottom: 2.5mm;
+
+            h1 {
+                font-size: 20pt;
+            }
+
+            h2 {
+                font-size: 14pt;
+                padding-top: 1mm;
+            }
+        }
+    }
+
+    #photo {
+        grid-area: photo;
+        justify-self: end;
+        align-self: stretch;
+        img {
+            height: 100%;
+        }
+    }
+
+    // SIZES
+    #profile,
+    #photo {
+        width: auto;
+        height: 34mm;
+    }
+</style>

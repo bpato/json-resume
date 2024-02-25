@@ -1,0 +1,19 @@
+---
+interface Props {
+    class?: string[];
+    data: any;
+}
+
+const { data } = Astro.props;
+---
+
+<div class="language">
+    <label>{data.language}</label>:
+    <span>{data.fluency}</span>
+</div>
+
+<style lang="scss">
+    .language {
+        margin-bottom: 2.5mm;
+    }
+</style>

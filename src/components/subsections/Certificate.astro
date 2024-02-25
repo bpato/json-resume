@@ -1,0 +1,51 @@
+---
+interface Props {
+    class?: string[];
+    data: any;
+}
+
+const { data } = Astro.props;
+---
+
+<article>
+    <header>
+        <hgroup>
+            <h3>{data.name}</h3>
+        </hgroup>
+        <p class="date">
+            {data.date}, {
+                data.url ? (
+                    <a
+                        href={data.url}
+                        title={data.issuer}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        {data.issuer}
+                    </a>
+                ) : (
+                    data.issuer
+                )
+            }
+        </p>
+    </header>
+</article>
+
+<style lang="scss">
+    article {
+        margin-bottom: 5mm;
+
+        header {
+            margin-bottom: 2.5mm;
+
+            h3 {
+                font-size: 12pt;
+                margin-bottom: 1.5mm;
+            }
+            .date {
+                font-size: 10pt;
+                font-style: oblique;
+            }
+        }
+    }
+</style>

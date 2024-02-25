@@ -1,0 +1,15 @@
+---
+interface Props {
+    class?: string[];
+    data: any;
+}
+
+const { data } = Astro.props;
+---
+
+<article class="reference">
+    <h3>{data.name}</h3>
+    <p>{data.reference}</p>
+</article>
+
+<style lang="scss"></style>

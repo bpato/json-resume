@@ -1,0 +1,25 @@
+---
+interface Props {
+    class?: string[];
+    data: any;
+}
+
+const { data } = Astro.props;
+---
+
+<div class="interest">
+    <div>
+        <label>{data.name}</label>:
+        <ul>
+            {data.keywords.map((k: string) => <li>{k}</li>)}
+        </ul>
+    </div>
+</div>
+
+<style lang="scss">
+    .interest {
+        div {
+            margin-bottom: 2.5mm;
+        }
+    }
+</style>

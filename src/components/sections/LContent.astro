@@ -1,0 +1,84 @@
+---
+import {
+    work,
+    volunteer,
+    publications,
+    languages,
+    interests,
+    references,
+} from "@cv";
+import Section from "@/components/Section.astro";
+import SubSection from "@/components/SubSection.astro";
+
+import Work from "@/components/subsections/Work.astro";
+import Volunteer from "@/components/subsections/Volunteer.astro";
+import Publication from "@/components/subsections/Publication.astro";
+import Language from "@/components/subsections/Language.astro";
+import Interest from "@/components/subsections/Interest.astro";
+import Reference from "@/components/subsections/Reference.astro";
+
+interface Props {
+    id?: string;
+}
+
+const { id } = Astro.props;
+---
+
+<Section {id}>
+    {
+        work && (
+            <SubSection id="work" title="WORK EXPERIENCE">
+                {work.map((data) => (
+                    <Work {data} />
+                ))}
+            </SubSection>
+        )
+    }
+    {
+        volunteer && (
+            <SubSection id="volunteer" title="VOLUNTEER EXPERIENCE">
+                {volunteer.map((data) => (
+                    <Volunteer {data} />
+                ))}
+            </SubSection>
+        )
+    }
+    {
+        publications && (
+            <SubSection id="publications" title="Publications">
+                {publications.map((data) => (
+                    <Publication {data} />
+                ))}
+            </SubSection>
+        )
+    }
+    {
+        languages && (
+            <SubSection id="languages" title="Languages">
+                {languages.map((data) => (
+                    <Language {data} />
+                ))}
+            </SubSection>
+        )
+    }
+    {
+        interests && (
+            <SubSection id="interests" title="Interests">
+                {interests.map((data) => (
+                    <Interest {data} />
+                ))}
+            </SubSection>
+        )
+    }
+    {
+        references && (
+            <SubSection id="references" title="References">
+                {references.map((data) => (
+                    <Reference {data} />
+                ))}
+            </SubSection>
+        )
+    }
+</Section>
+
+<style lang="scss"></style>

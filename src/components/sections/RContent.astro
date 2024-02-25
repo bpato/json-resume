@@ -1,0 +1,67 @@
+---
+import { education, awards, certificates, skills, projects } from "@cv";
+import Section from "@/components/Section.astro";
+import SubSection from "@/components/SubSection.astro";
+
+import Education from "@/components/subsections/Education.astro";
+import Award from "@/components/subsections/Award.astro";
+import Certificate from "@/components/subsections/Certificate.astro";
+import Skill from "@/components/subsections/Skill.astro";
+import Project from "@/components/subsections/Project.astro";
+
+interface Props {
+    id?: string;
+}
+
+const { id } = Astro.props;
+---
+
+<Section {id}>
+    {
+        education && (
+            <SubSection id="education" title="Education">
+                {education.map((data) => (
+                    <Education {data} />
+                ))}
+            </SubSection>
+        )
+    }
+    {
+        certificates && (
+            <SubSection id="certificates" title="Certificates">
+                {certificates.map((data) => (
+                    <Certificate {data} />
+                ))}
+            </SubSection>
+        )
+    }
+    {
+        skills && (
+            <SubSection id="skills" title="Skills">
+                {skills.map((data) => (
+                    <Skill {data} />
+                ))}
+            </SubSection>
+        )
+    }
+    {
+        awards && (
+            <SubSection id="awards" title="Awards">
+                {awards.map((data) => (
+                    <Award {data} />
+                ))}
+            </SubSection>
+        )
+    }
+    {
+        projects && (
+            <SubSection id="projects" title="Projects">
+                {projects.map((data) => (
+                    <Project {data} />
+                ))}
+            </SubSection>
+        )
+    }
+</Section>
+
+<style lang="scss"></style>

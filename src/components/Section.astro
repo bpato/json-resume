@@ -1,0 +1,68 @@
+---
+interface Props {
+    id?: string;
+}
+
+const { id } = Astro.props;
+---
+
+<div {id}>
+    <slot />
+</div>
+
+<style lang="scss">
+    // Estructura del bloque 1 de la parte superior:
+    // _________________________
+    // | _______           ____|
+    // | _______________   |  ||
+    // | ---------------   |__||
+    // |_______________________|
+
+    #personal_data {
+        display: grid;
+        grid-column-gap: 10mm;
+        grid-template-columns: 3fr 34mm;
+        grid-template-areas: "profile photo";
+
+        grid-area: personal_data;
+
+        width: auto;
+        height: 34mm;
+
+        padding-top: 10mm;
+        padding-left: 10mm;
+        padding-right: 10mm;
+        padding-bottom: 5mm;
+    }
+
+    #contact_info {
+        grid-area: contact_info;
+
+        width: auto;
+        height: 10mm;
+
+        padding-left: 10mm;
+        padding-right: 10mm;
+
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+    }
+
+    #column_left {
+        grid-area: column_left;
+
+        height: 223mm;
+        padding-left: 10mm;
+        padding-bottom: 10mm;
+        padding-top: 5mm;
+    }
+
+    #column_right {
+        grid-area: column_right;
+
+        height: 223mm;
+        padding-right: 10mm;
+        padding-bottom: 10mm;
+        padding-top: 5mm;
+    }
+</style>
